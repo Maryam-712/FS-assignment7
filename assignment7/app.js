@@ -14,12 +14,13 @@ dotenv.config();
 
 DBconnect();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3500;
 
 app.use('/teacher', TeacherRouter);
 app.use('/class', ClassRouter);
 app.use('/subject', SubjectRouter);
 
+app.get("/", (req, res) => res.send("API is running")) //root route
 
 app.use((req, res, next) => {
     const error = new Error(`Not Found ${req.originalUrl}`);
